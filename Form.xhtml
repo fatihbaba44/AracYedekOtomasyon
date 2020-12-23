@@ -5,34 +5,33 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"      >
 
-    <h:form id="isci-form">
+    <h:form id="firma-form">
         <div class="form-group">
-                <h:inputHidden value="#{isciController.isci.isciId}"/>
-                <label for="selectedUsta">Usta</label>
-                <h:selectOneMenu styleClass="custom-select" id="selectedUsta" value="#{isciController.isci.usta}" converter="ustaConverter" >
-                    <f:selectItems value="#{isciController.ustaList}" var="usta" itemValue="#{usta}" itemLabel="#{usta.ustaAd}   #{usta.ustaSoyad}"/>
-                </h:selectOneMenu>
-                <label for="inputName">Ad </label>
-                <h:inputText styleClass="form-control" value="#{isciController.isci.isciAd}"/>
-                <label for="inputName">Soyad </label>
-                <h:inputText styleClass="form-control" value="#{isciController.isci.isciSoyad}"/>
-                <label for="inputName">Tc </label>
-                <h:inputText styleClass="form-control" value="#{isciController.isci.isciTc}"/>
-           
+            <h:inputHidden value="#{firmaController.firma.firmaId}"/>
+
+            <label for="Firmalar">Siparisler</label>
+            <h:selectManyCheckbox value="#{firmaController.firma.verilenSiparisler}" styleClass="custom-select" converter="siparisConverter">
+                <f:selectItems value="#{firmaController.siparisController.siparisControllerList}" var="siparis" itemValue="#{siparis}" itemLabel="#{siparis.siparisKod}"/>
+
+            </h:selectManyCheckbox>
+
+            <label for="inputName">Ad </label>
+            <h:inputText styleClass="form-control" value="#{firmaController.firma.firmaAd}"/>
+            <label for="inputName">Aciklama </label>
+            <h:inputText styleClass="form-control" value="#{firmaController.firma.firmaAciklama}"/>
 
 
         </div>
         <div class="form-group btn-group">
-                <h:commandButton rendered="#{isciController.isci.isciId != null}" styleClass="btn btn-secondary" value="Update" action="#{isciController.update}">
-                    <f:ajax execute="isci-form" render="isci-table isci-form" />
-                </h:commandButton>
-                <h:commandButton rendered="#{isciController.isci.isciId == null}"  styleClass="btn btn-primary" value="Create" action="#{isciController.create}">
-                    <f:ajax execute="isci-form" render="isci-table isci-form" />
-                </h:commandButton>
-                <h:commandButton rendered="#{isciController.isci.isciId != null}"  styleClass="btn btn-light" value="Clear Form" action="#{isciController.clearForm()}">
-                    <f:ajax execute="@this" render="isci-form" />
-                </h:commandButton>
-         
+            <h:commandButton rendered="#{firmaController.firma.firmaId != null}" styleClass="btn btn-secondary" value="Update" action="#{firmaController.update}">
+                <f:ajax execute="firma-form" render="firma-table firma-form" />
+            </h:commandButton>
+            <h:commandButton rendered="#{firmaController.firma.firmaId == null}"  styleClass="btn btn-primary" value="Create" action="#{firmaController.create}">
+                <f:ajax execute="firma-form" render="firma-table firma-form" />
+            </h:commandButton>
+            <h:commandButton rendered="#{firmaController.firma.firmaId != null}"  styleClass="btn btn-light" value="Clear Form" action="#{firmaController.clearForm()}">
+                <f:ajax execute="@this" render="firma-form" />
+            </h:commandButton>
 
 
         </div>
