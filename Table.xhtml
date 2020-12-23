@@ -5,43 +5,51 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"      >
 
-    <h:form id="firma-table">
+   <h:form id="isci-table">
+                        
+                        <h:dataTable styleClass="table table-striped " width="1000" value="#{isciController.isciControllerList}" var="isci">
+                            <h:column>
+                                <f:facet name="header">Isci Id </f:facet>
+                                    #{isci.isciId}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Ad</f:facet>
+                                <h:commandLink action="#{isciController.updateForm(isci)}" value="#{isci.isciAd}">
+                                    <f:ajax execute="@this" render="isci-form" />
+                                </h:commandLink>
 
-        <h:dataTable styleClass="table table-striped " width="1000" value="#{firmaController.firmaControllerList}" var="firma">
-            <h:column>
-                <f:facet name="header">Firma Id </f:facet>
-                    #{firma.firmaId}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Ad</f:facet>
-                <h:commandLink action="#{firmaController.updateForm(firma)}" value="#{firma.firmaAd}">
-                    <f:ajax execute="@this" render="firma-form" />
-                </h:commandLink>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Soyad </f:facet>
+                                    #{isci.isciSoyad}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">TC </f:facet>
+                                    #{isci.isciTc}
+                            </h:column>
+                             <h:column>
+                                <f:facet name="header">Usta Ad </f:facet>
+                                    #{isci.usta.ustaAd}
+                            </h:column>
+                             <h:column>
+                                <f:facet name="header">Usta Soyad </f:facet>
+                                    #{isci.usta.ustaSoyad}
+                            </h:column>
+                             <h:column>
+                                <f:facet name="header">Usta Tc </f:facet>
+                                    #{isci.usta.ustaTc}
+                            </h:column>
+                            
+                            
+                            <h:column>
+                                <f:facet name="header">Delete</f:facet>
+                                 <h:outputText rendered="#{loginController.log==false}" value="Yetkiniz Yok!"/>
+                                <h:commandButton rendered="#{loginController.log==true}" styleClass="btn btn-danger btn-sm"  action="#{isciController.delete(isci)}" value="Delete">
+                                    <f:ajax execute="@this" render="isci-table isci-form"/>
+                                </h:commandButton>
 
-            </h:column>
-            <h:column>
-                <f:facet name="header">Aciklama </f:facet>
-                    #{firma.firmaAciklama}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Siparis Kod </f:facet>
-                <ul>
-                    <ui:repeat value="#{firma.verilenSiparisler}" var="siparisler">
-                        <li>#{siparisler.siparisKod}</li>
-                    </ui:repeat>
-                </ul>
-            </h:column>
-
-
-            <h:column>
-                <f:facet name="header">Delete</f:facet>
-                <h:outputText rendered="#{loginController.log==false}" value="Yetkiniz Yok!"/>
-                <h:commandButton rendered="#{loginController.log==true}" styleClass="btn btn-danger btn-sm"  action="#{firmaController.delete(firma)}" value="Delete">
-                    <f:ajax execute="@this" render="firma-table firma-form"/>
-                </h:commandButton>
-
-            </h:column>
-        </h:dataTable>
-    </h:form>
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
 </ui:composition>
 
