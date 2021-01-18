@@ -5,54 +5,24 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"      >
 
-    <h:form id="siparis-table">
-        <h:dataTable styleClass="table table-striped " width="1000" value="#{siparisController.siparisControllerList}" var="siparis">
-            <h:column>
-                <f:facet name="header">Siparis Id </f:facet>
-                    #{siparis.siparisId}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Siparis Kod</f:facet>
-                <h:commandLink action="#{siparisController.updateForm(siparis)}" value="#{siparis.siparisKod}">
-                    <f:ajax execute="@this" render="siparis-form" />
-                </h:commandLink>
 
-            </h:column>
-            <h:column>
-                <f:facet name="header">Siparis Parca Sayi </f:facet>
-                    #{siparis.siparisParcaSayi}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Muhasebeci ad </f:facet>
-                    #{siparis.muhasebeci.muhasebeciAd}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Muhasebeci Soyad </f:facet>
-                    #{siparis.muhasebeci.muhasebeciSoyad}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Parca Ad </f:facet>
-                    #{siparis.parca.parcaAd}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Parca Hammadde </f:facet>
-                    #{siparis.parca.parcaHammadde}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Firma Ad </f:facet>
-                <ul>
-                    <ui:repeat value="#{siparis.siparisVerenFirmalar}" var="firmalar">
-                        <li>#{firmalar.firmaAd}</li>
-                    </ui:repeat>
-                </ul>
-            </h:column>
+    <h:form id="usta-table">
 
-
+        <h:dataTable styleClass="table table-striped " width="1000" value="#{userController.userControllerList}" var="user">
+            <h:column>
+                <f:facet name="header">Kullanıcı Ad  Id </f:facet>
+                    #{user.kullaniciAd}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Sifre </f:facet>
+                <h:outputText rendered="#{loginController.log==true}" value="#{user.sifre}"/>
+                <h:outputText rendered="#{loginController.log==false}" value="******"/>
+            </h:column>
             <h:column>
                 <f:facet name="header">Delete</f:facet>
                 <h:outputText rendered="#{loginController.log==false}" value="Yetkiniz Yok!"/>
-                <h:commandButton rendered="#{loginController.log==true}" styleClass="btn btn-danger btn-sm"  action="#{siparisController.delete(siparis)}" value="Delete">
-                    <f:ajax execute="@this" render="siparis-table siparis-form"/>
+                <h:commandButton rendered="#{loginController.log==true}" styleClass="btn btn-danger btn-sm"  action="#{userController.delete(user)}" value="Delete">
+                    <f:ajax execute="@this" render="usta-table usta-form"/>
                 </h:commandButton>
 
             </h:column>
