@@ -5,10 +5,10 @@
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"      >
 
-    <h:form>
+    <h:form class=" btn btn-group">
         <div class="btn-group">
-            <h:commandButton styleClass="btn-primary" action="#{userController.previous()}" value="Geri"/>
-            <h:commandButton styleClass="btn-danger" action="#{userController.next()}" value="İleri"/>
+            <h:commandButton styleClass="btn-primary" action="#{ustaController.previous()}" value="Geri"/>
+            <h:commandButton styleClass="btn-danger" action="#{ustaController.next()}" value="İleri"/>
         </div>
     </h:form>
 </ui:composition>

@@ -8,23 +8,34 @@
 
     <h:form id="usta-table">
 
-        <h:dataTable styleClass="table table-striped " width="1000" value="#{userController.userControllerList}" var="user">
+        <h:dataTable styleClass="table table-striped " width="1000" value="#{ustaController.ustaControllerList}" var="usta">
             <h:column>
-                <f:facet name="header">Kullanıcı Ad  Id </f:facet>
-                    #{user.kullaniciAd}
+                <f:facet name="header">Usta Id </f:facet>
+                    #{usta.ustaId}
             </h:column>
             <h:column>
-                <f:facet name="header">Sifre </f:facet>
-                <h:outputText rendered="#{loginController.log==true}" value="#{user.sifre}"/>
-                <h:outputText rendered="#{loginController.log==false}" value="******"/>
+                <f:facet name="header">Ad</f:facet>
+                <h:commandLink action="#{ustaController.updateForm(usta)}" value="#{usta.ustaAd}">
+                    <f:ajax execute="@this" render="usta-form" />
+                </h:commandLink>
+
             </h:column>
+            <h:column>
+                <f:facet name="header">Soyad </f:facet>
+                    #{usta.ustaSoyad}
+            </h:column>
+            <h:column>
+                <f:facet name="header">TC </f:facet>
+                    #{usta.ustaTc}
+            </h:column>
+
+
             <h:column>
                 <f:facet name="header">Delete</f:facet>
                 <h:outputText rendered="#{loginController.log==false}" value="Yetkiniz Yok!"/>
-                <h:commandButton rendered="#{loginController.log==true}" styleClass="btn btn-danger btn-sm"  action="#{userController.delete(user)}" value="Delete">
+                <h:commandButton rendered="#{loginController.log==true}"  styleClass="btn btn-danger btn-sm"  action="#{ustaController.delete(usta)}" value="Delete">
                     <f:ajax execute="@this" render="usta-table usta-form"/>
                 </h:commandButton>
-
             </h:column>
         </h:dataTable>
     </h:form>
